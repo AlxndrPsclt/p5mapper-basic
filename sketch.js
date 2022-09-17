@@ -20,7 +20,7 @@ function setup() {
     // initialize map surfaces
     pMapper = createProjectionMapper(this);
     for (let i = 0; i < 10; i++) {
-        surfaces.push(pMapper.createQuadMap(400, 200, 4));
+        surfaces.push(pMapper.createQuadMap(400, 400, 4));
     }
     // load maps
     pMapper.load("maps/map.json");
@@ -36,21 +36,25 @@ function draw() {
     let index = 0;
     for (const surface of surfaces) {
         //let col = color((frameCount + index++ * 20) % 255, 255, 255);
-        // surface.clear();
+        //surface.clear();
         //surface.background(col);
         drawOnSurface(surface); 
     }
 }
 
 function drawOnSurface(surface) {
-  surface.background(5, 1); // translucent background (creates trails)
+  surface.background(10, 2); // translucent background (creates trails)
+  surface.strokeWeight(0.1); // translucent background (creates trails)
+  surface.stroke(250, 250, 250); // translucent background (creates trails)
+  //surface.fill(random(200, 255), 30); // translucent background (creates trails)
 
   // make a x and y grid of ellipses
   for (let x = 0; x <= width; x = x + 50) {
     for (let y = 0; y <= height; y = y + 50) {
+      surface.fill(random(0,255), random(0,255), random(0,255)); // translucent background (creates trails)
       // starting point of each circle depends on mouse position
-      const xAngle = map(mouseX, 0, 16 * width, -8 * PI, 8 * PI, true);
-      const yAngle = map(mouseY, 0, 16 * height, -8 * PI, 8 * PI, true);
+      const xAngle = map(mouseX, 0, 4 * width, -36 * PI, 36 * PI, true);
+      const yAngle = map(mouseY, 0, 4 * height, -36 * PI, 36 * PI, true);
       // and also varies based on the particle's location
       const angle = xAngle * (x / width) + yAngle * (y / height);
 
@@ -58,7 +62,7 @@ function drawOnSurface(surface) {
       const myX = x + 20 * cos(2 * PI * t * 6 + angle);
       const myY = y + 20 * sin(2 * PI * t * 6 + angle);
 
-      surface.ellipse(myX - 500, myY - 500, 10); // draw particle
+      surface.ellipse(myX - 500, myY - 500, random(20, 60)); // draw particle
     }
   }
 
