@@ -43,16 +43,18 @@ function draw() {
 }
 
 function drawOnSurface(surface) {
-  surface.background(10, 95); // translucent background (creates trails)
-  surface.strokeWeight(1); // translucent background (creates trails)
-  surface.stroke(random(30, 250), 50); // translucent background (creates trails)
+  surface.strokeWeight(0.2); // translucent background (creates trails)
+  surface.stroke(random(30, 180), random(10,125), random(150, 200), random(5, 20)); // translucent background (creates trails)
   //surface.stroke(250, 250, 250); // translucent background (creates trails)
   //surface.fill(random(200, 255), 30); // translucent background (creates trails)
+  surface.fill(20, random(10, 30)); // translucent background (creates trails)
+  surface.rect(-100, -100, 200, 200); // draw particle
 
+  //surface.background(100,0,0,25);
   // make a x and y grid of ellipses
-  for (let x = 0; x <= width; x = x + 50) {
-    for (let y = 0; y <= height; y = y + 50) {
-      surface.fill(random(0,50), random(100,200), random(200,255), random(80, 180)); // translucent background (creates trails)
+  for (let x = 0; x <= width; x = x + 100) {
+    for (let y = 0; y <= height; y = y + 100) {
+      //surface.background(10, 10); // translucent background (creates trails)
       // starting point of each circle depends on mouse position
       const xAngle = map(mouseX, 0, 4 * width, -36 * PI, 36 * PI, true);
       const yAngle = map(mouseY, 0, 4 * height, -36 * PI, 36 * PI, true);
@@ -60,10 +62,11 @@ function drawOnSurface(surface) {
       const angle = xAngle * (x / width) + yAngle * (y / height);
 
       // each particle moves in a circle
-      const myX = x + 20 * cos(2 * PI * t * 0.01 + angle);
-      const myY = y + 20 * sin(2 * PI * t * 0.01 + angle);
+      const myX = x + random(10, 50) * cos(2 * PI * t * 4 + angle);
+      const myY = y + random(10, 50) * sin(2 * PI * t * 4 + angle);
 
-      surface.ellipse(myX - 500, myY - 500, random(40, 80)); // draw particle
+      surface.fill(random(0,50), random(160,230), random(200,255), random(50, 120)); // translucent background (creates trails)
+      surface.ellipse(myX - 100, myY - 100, random(4, 10)); // draw particle
     }
   }
 
