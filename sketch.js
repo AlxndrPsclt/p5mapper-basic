@@ -43,11 +43,10 @@ function draw() {
 }
 
 function drawOnSurface(surface) {
-  surface.strokeWeight(0.2); // translucent background (creates trails)
-  surface.stroke(random(30, 180), random(10,125), random(150, 200), random(5, 20)); // translucent background (creates trails)
   //surface.stroke(250, 250, 250); // translucent background (creates trails)
   //surface.fill(random(200, 255), 30); // translucent background (creates trails)
-  surface.fill(20, random(10, 30)); // translucent background (creates trails)
+  surface.strokeWeight(0.001); // translucent background (creates trails)
+  surface.fill(10, random(10, 30)); // translucent background (creates trails)
   surface.rect(-100, -100, 200, 200); // draw particle
 
   //surface.background(100,0,0,25);
@@ -62,11 +61,12 @@ function drawOnSurface(surface) {
       const angle = xAngle * (x / width) + yAngle * (y / height);
 
       // each particle moves in a circle
-      const myX = x + random(10, 50) * cos(2 * PI * t * 4 + angle);
-      const myY = y + random(10, 50) * sin(2 * PI * t * 4 + angle);
+      const myX = x + random(10, 100) * cos(2 * PI * t * 4 + angle);
+      const myY = y + random(10, 100) * sin(2 * PI * t * 4 + angle);
 
+      surface.stroke(random(0, 255), random(0, 255), random(0, 255), random(5, 20)); // translucent background (creates trails)
       surface.fill(random(0,50), random(160,230), random(200,255), random(50, 120)); // translucent background (creates trails)
-      surface.ellipse(myX - 100, myY - 100, random(4, 10)); // draw particle
+      surface.ellipse(myX - 100, myY - 100, random(4, 40)); // draw particle
     }
   }
 
